@@ -1,4 +1,4 @@
-import * as fs from "node:fs";
+import * as fs from "fs";
 
 
 const localeMappings = {
@@ -6,9 +6,9 @@ const localeMappings = {
     'Canada - Montreal': { link: 'en-CA', utm: 'CA' },
     'New Zealand': { link: 'en-NZ', utm: 'NZ' },
     'Germany - Frankfurt - 3': { link: 'de-DE', utm: 'DE' },
-    'Switzerland': { link: 'de-CH', utm: 'CH' },
-    'Norway': { link: 'no-NO', utm: 'NO' },
-    'Ireland': { link: 'en-IE', utm: 'IE' }
+    'Switzerland': { link: 'de', utm: 'CH' },
+    'Norway': { link: 'no', utm: 'NO' },
+    'Ireland': { link: 'en', utm: 'IE' }
 };
 
 const paths = [
@@ -48,7 +48,7 @@ const generateLinksObject = (selectedLocation) => {
         acc[expectedLink] = {
             UTM: utm,
             location: selectedLocation,
-            expected_link: `${expectedLink}?${utm}`
+            expected_link: `${expectedLink}`
         };
 
         return acc;

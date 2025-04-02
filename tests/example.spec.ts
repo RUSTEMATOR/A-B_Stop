@@ -2,8 +2,8 @@ import {expect, Page, test} from "@playwright/test";
 import moment = require("moment");
 import {qase} from "playwright-qase-reporter";
 import vpnController, {VpnController} from "../src/VpnController/vpnController";
-import {LinkObject} from "../src/interface/linkObjectInterface";
-const linksObject: LinkObject = require('./linksData.json');
+import {LinkObject, LinksObject} from "../src/interface/linkObjectInterface";
+const linksObject: LinksObject = require('../output.json');
 
 async function formBaseLink(page: Page){
         const fullUrl = await page.url()

@@ -3,3 +3,7 @@ export interface LinkObject {
   location: string;
   expected_link: string;
 }
+
+export interface LinksObject {
+  [key: string]: LinkObject;
+}
