@@ -1,5 +1,5 @@
 import {expect, Page, test} from "@playwright/test";
-import moment = require("moment");
+import moment from "moment";
 import {qase} from "playwright-qase-reporter";
 import vpnController, {VpnController} from "../src/VpnController/vpnController";
 import {LinkObject, LinksObject} from "../src/interface/linkObjectInterface";
@@ -86,14 +86,17 @@ async function formBaseLink(page: Page){
     }
 
 test.describe('Stop A/B', () => {
-    let vpnController: VpnController
+   
 
 
     for (const [link, props] of Object.entries(linksObject)) {
-        const [utm, locations] = Object.values(props)
-        for (const location of locations) {
+        const [expectedUtm, location, expectedLink] = Object.values(props)
+        // const utm = props.UTM
+        // const location = props.location
+        // const expectedLink = props.expected_link
+     
 
-            test(`${link} and ${location}`, async ({page}) => {
+            test(`${link} and ${location} `, async ({page}) => {
                 await connectToVpn(location)
                 console.log(location)
 
@@ -106,13 +109,16 @@ test.describe('Stop A/B', () => {
                 qase.comment(`
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     
-                    Current URL: ${finalUrl}\n Expected links: \n${link}\n
-                    \n\n Expected parameters: ${utm}\n Received parameters: ${actualUtm}      
+                    Current URL: ${finalUrl}\n Expected links: \n${expectedLink}\n
+                    \n\n Expected parameters: ${expectedUtm}\n Received parameters: ${actualUtm}      
                     `)
-                expect(finalUrl).toEqual(link)
-                expect(actualUtm).toEqual(utm)
+                expect(finalUrl).toEqual(expectedLink)
+                expect(actualUtm).toEqual(expectedUtm)
+
+             
             })
-        }
+        
+    
     }
 
 })

@@ -39,7 +39,6 @@ export default defineConfig({
                     title: '[KB] Stop A/B testing of LPs',
                     description: '',
                     id: '264'
-
                   }
 
                 }
